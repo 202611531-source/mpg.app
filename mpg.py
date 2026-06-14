@@ -2,6 +2,15 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+import subprocess
+import sys
+
+# 스트림릿 클라우드가 패키지를 간혹 누락할 때 강제로 설치하는 코드
+try:
+    import joblib
+except ModuleNotFoundError:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "joblib", "scikit-learn"])
+    import joblib
 
 # 1. 저장해둔 모델, 스케일러, 딕셔너리 불러오기
 # (파일들이 app.py와 같은 폴더에 있어야 합니다)
